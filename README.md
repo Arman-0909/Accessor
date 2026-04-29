@@ -67,8 +67,15 @@ Accessor/
    ```bash
    pip install -r requirements.txt
    ```
-5. **Set up your environment variables**:
-   Create a `.env` file in the root directory (matching settings in `app/core.py`) with your `DATABASE_URL` (PostgreSQL), `REDIS_URL` (e.g., `redis://localhost:6379`), and `SECRET_KEY`.
+5. **Set up environment variables**:
+   Copy the example file and fill in your own values:
+   ```bash
+   cp .env.example .env
+   ```
+   Then edit `.env` with your:
+   - `DATABASE_URL` from [Neon](https://neon.tech)
+   - `REDIS_URL` from [Upstash](https://upstash.com) 
+   - `SECRET_KEY` — any long random string
 6. **Run the development server**:
    ```bash
    uvicorn app.main:app --reload
