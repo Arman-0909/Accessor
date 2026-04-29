@@ -6,9 +6,9 @@ The system automatically tracks every API request made, logging the endpoint hit
 
 ## 🚀 Current Features
 
-- **Cyberpunk Grid UI**: A sleek, custom-built frontend (HTML/CSS/Vanilla JS) with a boxy cyberpunk aesthetic, served directly by FastAPI. No heavy JavaScript frameworks required!
+- **Professional Developer Console**: A sleek, custom-built frontend (HTML/CSS/Vanilla JS) styled like modern developer tools (e.g., Neon Console). Features a robust dark mode, full-width data tables, and minimal visual noise. Served directly by FastAPI.
 - **User Authentication**: Secure JWT-based authentication with direct `bcrypt` password hashing (bypassing outdated passlib dependencies).
-- **API Key Generation**: Generates unique, secure API keys linked to specific users, featuring custom prefixes (`acc-...`).
+- **API Key Management**: Generates unique, secure API keys linked to specific users, featuring custom prefixes (`acc-...`). Manage and revoke keys instantly from the dashboard.
 - **Real-Time Usage Tracking**: Custom FastAPI middleware intercepts API requests to log detailed usage statistics seamlessly into the database.
 - **Analytics API**: Provides granular summaries of usage per key, natively using SQL aggregations to calculate total requests, success/failure rates, and average response times.
 - **Interactive API Docs**: Fully automated Swagger UI documentation for testing all backend routes out-of-the-box.
