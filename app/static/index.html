@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessor | Console</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- App View -->
+    <div id="app-view" class="app-layout">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box"><i data-lucide="zap" style="width:14px;height:14px;"></i></div>
+                Accessor
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-label">PROJECT</div>
+                <a href="#overview" class="nav-item active"><i data-lucide="layout-dashboard"></i> Overview</a>
+                <a href="#keys" class="nav-item"><i data-lucide="key"></i> API Keys</a>
+                <a href="#logs" class="nav-item"><i data-lucide="activity"></i> Monitoring</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="breadcrumbs">
+                    Accessor / <span>production</span> <div class="badge-ok"><div class="dot"></div> All OK</div>
+                </div>
+                <div style="display:flex; gap:0.5rem;">
+                    <a href="/docs" target="_blank" class="btn" style="text-decoration:none;"><i data-lucide="file-text"></i> Docs</a>
+                    <button class="btn" id="btn-show-login" onclick="openModal('login-modal')"><i data-lucide="log-in"></i> Login</button>
+                    <button class="btn" id="btn-logout" style="display:none;"><i data-lucide="log-out"></i> Logout</button>
+                </div>
+            </header>
+
+            <div class="scroll-container">
+                <div class="content-body">
+                    
+                    <h1 id="overview">Branch overview</h1>
+                    
+                    <div class="stats-panel">
+                        <div class="stat-box">
+                            <div class="stat-label">Total Requests <i data-lucide="info" style="width:12px; height:12px;"></i></div>
+                            <div class="stat-val" id="stat-reqs">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Avg Latency <i data-lucide="info" style="width:12px; height:12px;"></i></div>
+                            <div class="stat-val" id="stat-latency">0ms</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Active Keys <i data-lucide="info" style="width:12px; height:12px;"></i></div>
+                            <div class="stat-val" id="stat-keys">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Uptime <i data-lucide="info" style="width:12px; height:12px;"></i></div>
+                            <div class="stat-val">100%</div>
+                        </div>
+                    </div>
+
+                    <div class="panel" id="keys">
+                        <div class="panel-header">
+                            <div>
+                                <h2>API Keys</h2>
+                                <p>Manage your access tokens and rate limits.</p>
+                            </div>
+                            <button class="btn primary" onclick="openModal('generate-modal')">Create Key</button>
+                        </div>
+                        <div style="overflow-x:auto;">
+                            <table id="keys-table" style="table-layout: fixed; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 25%;">Name</th>
+                                        <th style="width: 40%;">Key Hash</th>
+                                        <th style="width: 15%;">Rate Limit</th>
+                                        <th style="width: 20%;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="keys-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel" id="logs">
+                        <div class="panel-header">
+                            <div>
+                                <h2>Monitoring</h2>
+                                <p>Real-time gateway request logs.</p>
+                            </div>
+                            <button id="btn-refresh" class="btn"><i data-lucide="refresh-cw"></i> Refresh</button>
+                        </div>
+                        <div style="overflow-x:auto;">
+                            <table id="logs-table" style="table-layout: fixed; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 25%;">Time</th>
+                                        <th style="width: 40%;">Endpoint</th>
+                                        <th style="width: 15%;">Status</th>
+                                        <th style="width: 20%;">Latency</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="logs-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="login-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <h2>Authentication</h2>
+            <div id="auth-msg" class="form-msg"></div>
+            <form id="auth-form">
+                <input type="email" id="auth-email" placeholder="Email Address" required>
+                <input type="password" id="auth-password" placeholder="Password" required>
+                <div class="modal-actions">
+                    <button type="button" id="btn-register" class="btn">Register</button>
+                    <button type="button" id="btn-login" class="btn primary">Sign In</button>
+                </div>
+                <div style="text-align:center; margin-top:1rem;">
+                    <a href="#" onclick="closeModal('login-modal')" style="color:var(--text-muted); font-size:0.8rem; text-decoration:none;">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="generate-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <h2>Create API Key</h2>
+            <div id="generate-msg" class="form-msg"></div>
+            <form id="key-form">
+                <input type="text" id="key-name" placeholder="Key Name (e.g. Production App)" required autocomplete="off">
+                <input type="number" id="key-rate" placeholder="Rate Limit (req/min)" value="100" min="1" required>
+                <div class="modal-actions">
+                    <button type="button" class="btn" onclick="closeModal('generate-modal')">Cancel</button>
+                    <button type="submit" class="btn primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <h2>Edit Configuration</h2>
+            <div id="edit-msg" class="form-msg"></div>
+            <form id="edit-form">
+                <input type="hidden" id="edit-key-id">
+                <input type="text" id="edit-key-name" required autocomplete="off">
+                <input type="number" id="edit-key-rate" min="1" required>
+                <div class="modal-actions">
+                    <button type="button" class="btn" onclick="closeModal('edit-modal')">Cancel</button>
+                    <button type="submit" class="btn primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="revoke-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <h2 style="color:var(--danger);">Revoke Key</h2>
+            <div id="revoke-msg" class="form-msg"></div>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem;">This action cannot be undone. All incoming requests using this key will be instantly rejected.</p>
+            <div class="modal-actions">
+                <button type="button" class="btn" onclick="closeModal('revoke-modal')">Cancel</button>
+                <button type="button" class="btn danger" id="btn-confirm-revoke" style="border-color:var(--danger); color:var(--danger);">Revoke permanently</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <script src="/app.js"></script>
+    <script>
+        lucide.createIcons();
+        
+        // Simple active state toggle for sidebar links
+        document.querySelectorAll('.sidebar-nav .nav-item').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-nav .nav-item').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
