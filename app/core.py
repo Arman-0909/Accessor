@@ -10,6 +10,12 @@ class Settings(BaseSettings):
     APP_NAME: str = "Accessor"
     VERSION: str = "1.0.0"
     DEBUG: bool = True
+    ENVIRONMENT: str = "development"
+    CORS_ORIGINS: list[str] = ["*"]
+    MAX_CONNECTIONS_COUNT: int = 10
+    MIN_CONNECTIONS_COUNT: int = 10
+    API_V1_STR: str = "/api/v1"
+    PROJECT_NAME: str = "Accessor API"
 
     class Config:
         env_file = ".env"
