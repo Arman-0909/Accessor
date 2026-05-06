@@ -1,12 +1,16 @@
-# Byte-compiled / optimized / DLL files
+# =============================================================================
+# Accessor — .gitignore
+# =============================================================================
+
+# --- Python bytecode ---
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
+# --- C extensions ---
 *.so
 
-# Distribution / packaging
+# --- Distribution / packaging ---
 .Python
 build/
 develop-eggs/
@@ -26,17 +30,15 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+# --- PyInstaller ---
 *.manifest
 *.spec
 
-# Installer logs
+# --- Installer logs ---
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# --- Testing & coverage ---
 htmlcov/
 .tox/
 .nox/
@@ -51,7 +53,16 @@ coverage.xml
 .pytest_cache/
 cover/
 
-# Environments
+# --- Type checking ---
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+
+# --- Linting ---
+.ruff_cache/
+
+# --- Environments ---
 .env
 .env.*
 !.env.example
@@ -62,10 +73,14 @@ ENV/
 env.bak/
 venv.bak/
 
-# Jupyter Notebook
+# --- Logs ---
+*.log
+logs/
+
+# --- Jupyter ---
 .ipynb_checkpoints
 
-# IDEs and Editors
+# --- IDEs and editors ---
 .vscode/
 .idea/
 *.swp
@@ -75,7 +90,7 @@ venv.bak/
 .pydevproject
 .settings/
 
-# OS generated files
+# --- OS generated files ---
 .DS_Store
 .DS_Store?
 ._*
@@ -84,11 +99,11 @@ venv.bak/
 ehthumbs.db
 Thumbs.db
 
-# Docker
+# --- Docker ---
 .dockerignore
 docker-compose.override.yml
 
-# Custom
+# --- Project-specific ---
 scratch/
 *.db
 *.sqlite3

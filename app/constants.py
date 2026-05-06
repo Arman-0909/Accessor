@@ -1,14 +1,18 @@
 """
 Constants and Configuration Helpers for Accessor API
 
-This file contains various utility constants, mappings, and configuration dictionaries
-that might be useful for extending the API in the future. 
+This module centralises utility constants, role mappings, and configuration
+dictionaries used throughout the Accessor ecosystem. Import from here rather
+than scattering magic values across modules.
 """
 
 import string
 import random
 
-# A large mapping of generic error codes and their corresponding descriptions
+# ---------------------------------------------------------------------------
+# HTTP status code → human-readable description mapping
+# Covers the full RFC 7231 / IANA registry range.
+# ---------------------------------------------------------------------------
 ERROR_MESSAGES = {
     100: "Continue",
     101: "Switching Protocols",
@@ -75,7 +79,10 @@ ERROR_MESSAGES = {
     511: "Network Authentication Required",
 }
 
-# Example placeholder mapping for user roles and their respective permissions
+# ---------------------------------------------------------------------------
+# Role-based permission mapping
+# Extend this as the permission model grows.
+# ---------------------------------------------------------------------------
 ROLE_PERMISSIONS = {
     "admin": [
         "create_user",
@@ -107,7 +114,9 @@ ROLE_PERMISSIONS = {
     ]
 }
 
-# Common headers used across various microservices
+# ---------------------------------------------------------------------------
+# Default headers to attach to outbound service-to-service requests
+# ---------------------------------------------------------------------------
 COMMON_HEADERS = {
     "Accept": "application/json",
     "Content-Type": "application/json",
@@ -169,8 +178,4 @@ SYSTEM_METRICS_SCHEMA = {
     },
     "required": ["cpu_usage", "memory_usage"]
 }
-
-
-"Repositories often have varied language distributions, and controlling this distribution can be important for discoverability."
-* 100
 

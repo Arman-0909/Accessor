@@ -1,8 +1,8 @@
 # Accessor
 
-Accessor is a production-ready API Key Management and Usage Tracking System built with FastAPI and PostgreSQL. It is designed to mirror real-world SaaS infrastructure, enabling user registration, API key generation (`acc-...`), and secure request authentication.
+Accessor is a production-ready **API Key Management and Usage Tracking System** built with FastAPI and PostgreSQL. Designed to mirror real-world SaaS infrastructure, it enables user registration, API key generation (`acc-...` prefix), and secure request authentication via JWT.
 
-The system tracks every API request, including endpoint, response time, status code, and timestamp via a custom middleware layer. It serves as an interview-ready demonstration of production-grade API architecture.
+Every API request is tracked in real time — including endpoint, response time, status code, and timestamp — through a custom middleware layer. Accessor serves as a clean, interview-ready demonstration of production-grade API architecture.
 
 ---
 
@@ -43,12 +43,14 @@ The system tracks every API request, including endpoint, response time, status c
 
 ## Tech Stack
 
-- Backend: FastAPI  
-- Frontend: HTML, CSS, JavaScript  
-- Database: PostgreSQL (Neon)  
-- ORM: SQLModel, SQLAlchemy  
-- Security: python-jose (JWT), bcrypt  
-- Config: pydantic-settings  
+| Layer | Technology |
+|---|---|
+| Backend | FastAPI |
+| Frontend | HTML, CSS, Vanilla JS |
+| Database | PostgreSQL (Neon) |
+| ORM | SQLModel, SQLAlchemy |
+| Auth | python-jose (JWT), bcrypt |
+| Config | pydantic-settings |
 
 ---
 
@@ -134,6 +136,12 @@ Recommended stack:
 - Database: Neon (PostgreSQL)
 - Cache: Upstash (Redis)
 - Hosting: Render (Web Service)
+
+---
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ---
 
