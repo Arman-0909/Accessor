@@ -1,5 +1,7 @@
 # Accessor
 
+---
+
 Accessor is a production-ready **API Key Management and Usage Tracking System** built with FastAPI and PostgreSQL. Designed to mirror real-world SaaS infrastructure, it enables user registration, API key generation (`acc-...` prefix), and secure request authentication via JWT.
 
 ---
